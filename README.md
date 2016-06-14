@@ -8,4 +8,4 @@
   </br>
   <a href="https://github.com/Jmss100"> Jmss100 </a>
 </p>
-Projeto ainda sem nome...
+Projeto ainda sem nome e em estado de andamento ;D
