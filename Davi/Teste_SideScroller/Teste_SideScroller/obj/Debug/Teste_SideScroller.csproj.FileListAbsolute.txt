@@ -7,3 +7,12 @@ C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller
 C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.csproj.GenerateResource.Cache
 C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.exe
 C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.pdb
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\bin\Debug\Teste_SideScroller.exe.config
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.exe
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.pdb
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\bin\Debug\Teste_SideScroller.exe
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\bin\Debug\Teste_SideScroller.pdb
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.csprojResolveAssemblyReference.cache
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.Properties.Resources.resources
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.csproj.GenerateResource.Cache
+C:\Users\Davi\Documents\GitHub\noName\Davi\Teste_SideScroller\Teste_SideScroller\obj\Debug\Teste_SideScroller.MainWind.resources
