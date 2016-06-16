@@ -83,6 +83,26 @@ namespace Teste_SideScroller.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Koala3 {
+            get {
+                object obj = ResourceManager.GetObject("Koala3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Koala4 {
+            get {
+                object obj = ResourceManager.GetObject("Koala4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tex_dirt {
             get {
                 object obj = ResourceManager.GetObject("tex_dirt", resourceCulture);

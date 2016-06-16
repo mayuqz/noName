@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Teste_SideScroller
 {
@@ -17,6 +18,8 @@ namespace Teste_SideScroller
 
         public MainWind() {
             InitializeComponent();
+            this.Width = SideScroller.CANVAS_WIDTH;
+            this.Height = SideScroller.CANVAS_HEIGHT;
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e) {
@@ -35,6 +38,60 @@ namespace Teste_SideScroller
 
         private void MainWind_Load(object sender, EventArgs e) {
             AllocConsole();
+        }
+
+        private void MainWind_KeyDown(object sender, KeyEventArgs e){
+            if (e.KeyCode == Keys.Up) {
+                //MessageBox.Show("Up");
+                GEngine.koalaJump();
+            }
+            else
+            if (e.KeyCode == Keys.Down) {
+                //MessageBox.Show("O");
+                
+            }
+            else
+            if (e.KeyCode == Keys.Left) {
+                GEngine.koalaLeft = true;
+            }
+            else
+            if (e.KeyCode == Keys.Right) {
+                GEngine.koalaRifht = true;
+            }
+            else
+            if (e.KeyCode == Keys.Space) {
+                //MessageBox.Show("K");
+                GEngine.koalaJump();
+            }
+            else
+            if (e.KeyCode == Keys.F4) {
+                this.Close();
+            }
+
+        }
+
+        private void MainWind_KeyUp(object sender, KeyEventArgs e){
+            if (e.KeyCode == Keys.Up) {
+                //MessageBox.Show("Up");
+            }
+            else
+            if (e.KeyCode == Keys.Down) {
+                //MessageBox.Show("O");
+                
+            }
+            else
+            if (e.KeyCode == Keys.Left) {
+                GEngine.koalaLeft = false;
+            }
+            else
+            if (e.KeyCode == Keys.Right) {
+                GEngine.koalaRifht = false;
+            }
+            else
+            if (e.KeyCode == Keys.Space) {
+                //MessageBox.Show("K");
+                //GEngine.koalaJump();
+            }
         }
     }
 }

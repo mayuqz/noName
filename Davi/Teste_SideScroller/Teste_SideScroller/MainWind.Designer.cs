@@ -54,6 +54,8 @@
             this.Text = "Teste Side Scroller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWind_FormClosing);
             this.Load += new System.EventHandler(this.MainWind_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWind_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWind_KeyUp);
             this.ResumeLayout(false);
 
         }

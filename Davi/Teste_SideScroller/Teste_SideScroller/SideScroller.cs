@@ -9,11 +9,11 @@ namespace Teste_SideScroller
 {
     class SideScroller {
 
-        public const int CANVAS_HEIGHT = 500;
-        public const int CANVAS_WIDTH = 800;
-        public const int LEVEL_WIDTH = 24;
-        public const int LEVEL_HEIGHT = 14;
-        public const int TILE_SIDE_LENGTH = 30;
+        public const int CANVAS_WIDTH = 1200;
+        public const int CANVAS_HEIGHT = 690;
+        public const int LEVEL_WIDTH = 30;
+        public const int LEVEL_HEIGHT = 15;
+        public const int TILE_SIDE_LENGTH = 50;
 
         private GEngine gEngine;
 
@@ -34,6 +34,8 @@ namespace Teste_SideScroller
 
     public enum TextureID {
         air,
-        dirt
+        dirt,
+        dirt2,
+        lava
     }
 }
