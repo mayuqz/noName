@@ -136,7 +136,8 @@ namespace Teste_SideScroller
         private void end() {
             pontos = 0;
             koala_x = 0;
-            koala_y = 8 * SideScroller.TILE_SIDE_LENGTH;
+            koala_y = 3 + 8 * SideScroller.TILE_SIDE_LENGTH;
+            //koala_y = 8;
         }
 
         int old_koalaY = 0;
