@@ -56,6 +56,7 @@
             this.Load += new System.EventHandler(this.MainWind_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWind_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWind_KeyUp);
+            this.Resize += new System.EventHandler(this.MainWind_Resize);
             this.ResumeLayout(false);
 
         }

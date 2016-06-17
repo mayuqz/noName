@@ -20,12 +20,18 @@ namespace Teste_SideScroller
             InitializeComponent();
             this.Width = SideScroller.CANVAS_WIDTH;
             this.Height = SideScroller.CANVAS_HEIGHT;
-        }
 
-        private void canvas_Paint(object sender, PaintEventArgs e) {
             sideScroller.loadLevel();
             Graphics g = canvas.CreateGraphics();
             sideScroller.startGraphcs(g);
+        }
+
+        private void canvas_Paint(object sender, PaintEventArgs e) {
+            sideScroller.resumeSideScroller();
+            //GEngine.resume();
+            //sideScroller.loadLevel();
+            //Graphics g = canvas.CreateGraphics();
+            //sideScroller.startGraphcs(g);
         }
 
         private void MainWind_FormClosing(object sender, FormClosingEventArgs e) {
@@ -91,6 +97,12 @@ namespace Teste_SideScroller
             if (e.KeyCode == Keys.Space) {
                 //MessageBox.Show("K");
                 //GEngine.koalaJump();
+            }
+        }
+
+        private void MainWind_Resize(object sender, EventArgs e){
+            if (WindowState == FormWindowState.Minimized) {
+                sideScroller.pauseSideScroller();
             }
         }
     }

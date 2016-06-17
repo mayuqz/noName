@@ -29,6 +29,10 @@ namespace Teste_SideScroller
         int screen_x = 0;
         int screen_y = 0;
 
+        int pontos = 0;
+
+        int fps = 0;
+
         /* --------- Functions ---------- */
 
         public GEngine(Graphics g) {
@@ -113,7 +117,31 @@ namespace Teste_SideScroller
             }
         }
 
+        static bool run = true;
+        bool runable = false;
+
+        public void pause() {
+            renderThread.Suspend();
+            Console.WriteLine("Pause");
+            runable = true;
+        }
+
+        public void resume() {
+            if (runable) {
+                renderThread.Resume();
+                Console.WriteLine("Resume");
+            }
+        }
+
+        private void end() {
+            pontos = 0;
+            koala_x = 0;
+            koala_y = 8 * SideScroller.TILE_SIDE_LENGTH;
+        }
+
         int old_koalaY = 0;
+
+        bool koalajumpable = true;
 
         private void render() {
             int frameRendered = 0;
@@ -130,6 +158,21 @@ namespace Teste_SideScroller
                 
                 frameGraphcs.FillRectangle(new SolidBrush(Color.Aqua), 0, 0, SideScroller.CANVAS_WIDTH, SideScroller.CANVAS_HEIGHT);
 
+                while (!run) ;
+
+                frameGraphcs.FillRectangle(new SolidBrush(Color.Aquamarine), 0, 0, SideScroller.CANVAS_WIDTH, 50);
+
+                System.Drawing.Font drawFont = new System.Drawing.Font("Arial", 20);
+                System.Drawing.SolidBrush drawBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Gray);
+                frameGraphcs.DrawString("Pontos: " + pontos, drawFont, drawBrush, 50, 10);
+                frameGraphcs.DrawString("FPS: " + fps, drawFont, drawBrush, SideScroller.CANVAS_WIDTH - 150, 10);
+
+                frameGraphcs.DrawString("DaviApps inc.", new System.Drawing.Font("Arial", 50), new System.Drawing.SolidBrush(System.Drawing.Color.Azure), SideScroller.CANVAS_WIDTH/2 - screen_x, 100);
+
+                //drawFont.Dispose();
+                //drawBrush.Dispose();
+                //frameGraphcs.Dispose();
+
                 //if (koala_y < 8 * SideScroller.TILE_SIDE_LENGTH) {
                 
 
@@ -145,11 +188,19 @@ namespace Teste_SideScroller
                             break;
                             case TextureID.dirt2:
                             //frameGraphcs.DrawImage(tex_dirt2, x * SideScroller.TILE_SIDE_LENGTH, y * SideScroller.TILE_SIDE_LENGTH);
+                            frameGraphcs.FillRectangle(new SolidBrush(Color.Green), x * SideScroller.TILE_SIDE_LENGTH - screen_x + 2, y * SideScroller.TILE_SIDE_LENGTH - 2, 10, 10);
+                            frameGraphcs.FillRectangle(new SolidBrush(Color.Green), x * SideScroller.TILE_SIDE_LENGTH - screen_x + 15, y * SideScroller.TILE_SIDE_LENGTH - 5, 5, 10);
+                            frameGraphcs.FillRectangle(new SolidBrush(Color.Green), x * SideScroller.TILE_SIDE_LENGTH - screen_x + 30, y * SideScroller.TILE_SIDE_LENGTH - 4, 10, 10);
+                            //frameGraphcs.FillRectangle(new SolidBrush(Color.Green), x * SideScroller.TILE_SIDE_LENGTH - screen_x, y * SideScroller.TILE_SIDE_LENGTH, 49, 10);
+
                                 frameGraphcs.FillRectangle(new SolidBrush(Color.Green), x * SideScroller.TILE_SIDE_LENGTH - screen_x, y * SideScroller.TILE_SIDE_LENGTH, 49, 10);
                                 frameGraphcs.FillRectangle(new SolidBrush(Color.Brown), x * SideScroller.TILE_SIDE_LENGTH - screen_x, y * SideScroller.TILE_SIDE_LENGTH + 10, 49, 39);
                             break;
                             case TextureID.lava:
                                 frameGraphcs.FillRectangle(new SolidBrush(Color.Red), x * SideScroller.TILE_SIDE_LENGTH - screen_x, y * SideScroller.TILE_SIDE_LENGTH, 49, 49);
+                            break;
+                            case TextureID.coin:
+                                frameGraphcs.FillRectangle(new SolidBrush(Color.Orange), x * SideScroller.TILE_SIDE_LENGTH - screen_x, y * SideScroller.TILE_SIDE_LENGTH, 49, 49);
                             break;
                         }
                     }
@@ -163,7 +214,7 @@ namespace Teste_SideScroller
                 int koalaBlock_DownLeft = (int)textures[(koala_x - 5) / 50, (koala_y) / 50];
                 int koalaBlockDown = (int) textures[koalaPositionX, koalaPositionY +1];
                 int koalaBlockUp = 0;
-                if(koala_y / 50 > 1) koalaBlockUp = (int) textures[koalaPositionX, koalaPositionY - 1];
+                if(koala_y / 50 > 1) koalaBlockUp = (int) textures[(koala_x + 25) / 50, koalaPositionY - 1];
                 int koalaBlockLeft = 0;
                 //if(koala_x/50 > 1) koalaBlockLeft = (int) textures[koalaPositionX - 1, koalaPositionY];
                 if (koala_x / 50 > 1) koalaBlockLeft = (int)textures[(koala_x + 45) / 50 - 1, (koala_y + 45) /50];
@@ -175,33 +226,40 @@ namespace Teste_SideScroller
                 int koalaBlockDownRight = 0;
                 if (koala_x / 50 > 1) koalaBlockDownRight = (int)textures[(koala_x - 2) / 50 + 1, (koala_y) / 50 + 1];
 
-                int koalaBlockUpLeft = 0;
-                if (koala_x / 50 > 1) koalaBlockUpLeft = (int)textures[koalaPositionX - 1, koalaPositionY - 1];
+                ///int koalaBlockUpLeft = 0;
+                //if (koala_x / 50 > 1) koalaBlockUpLeft = (int)textures[koalaPositionX - 1, koalaPositionY - 1];
                 int koalaBlockUpRight = 0;
                 if (koala_x / 50 > 1) koalaBlockUpRight = (int)textures[koalaPositionX + 1, koalaPositionY - 1];
 
-                if (koalaJumpBool) { //  ----------------------------------------------  JUMP  ------------------------------------------
+                if (koalaJumpBool && koalajumpable) { //  ----------------------------------------------  JUMP  ------------------------------------------
                     //koalaJumpBool = false;
 
                     koalaFall = false;
+
+                    if (koalaBlock == (int) TextureID.coin) pontos = pontos + 5;
 
                     if (koala_y >= old_koalaY - 60 && old_koalaY - 100 > 0 && ((int)textures[(koala_x + 45) / 50, koalaPositionY] == (int)TextureID.air && (int)textures[(koala_x) / 50, koalaPositionY] == (int)TextureID.air /*&& (koalaBlockRight == (int) TextureID.air && koala_x% 50 > 0)*/)) koala_y = koala_y - 5;
                     else {
                         koalaJumpBool = false;
                         koalaFall = true;
+                        koalajumpable = false;
                     }
 
                 }
 
+                /* ---------------------------------------------DIRECAO --------------------------------------- */
+
+                if (koalaLeft && koalaRifht) ;
+                else
                 if (koalaRifht) {
-                    if (koala_x < SideScroller.CANVAS_WIDTH * SideScroller.TILE_SIDE_LENGTH) {
+                    if (koala_x < SideScroller.LEVEL_WIDTH * SideScroller.TILE_SIDE_LENGTH - 60) {
                         if (koalaBlockRight == (int) TextureID.air && koalaBlock_DownRight == (int) TextureID.air) {
                         //Console.WriteLine(koala_x + "Direita: " + koalaBlockRight);
-                        koala_x = koala_x + 5;
-                    }
-                    /*else
-                    if (koalaBlockRight == (int) TextureID.air) {
-                    }*/
+                            koala_x = koala_x + 5;
+                        }
+                        /*else
+                        if (koalaBlockRight == (int) TextureID.air) {
+                        }*/
                     }
                 }
                 else 
@@ -215,6 +273,8 @@ namespace Teste_SideScroller
                         }
                     }
                 }
+
+                if (koalaBlockDown == (int) TextureID.lava) end();
                 
                 if(koalaFall){ // ------------------------------------------------------- FALL  -----------------------------------------
                     if (koalaBlockDown == (int) TextureID.air) {
@@ -242,6 +302,8 @@ namespace Teste_SideScroller
                     else
                     if (koalaBlockDown == (int) TextureID.dirt || koalaBlockDown == (int) TextureID.dirt2) {
                         old_koalaY = koala_y;
+                        koalaJumpBool = false;
+                        koalajumpable = true;
                     }
                 }
 
@@ -258,12 +320,13 @@ namespace Teste_SideScroller
 
                 drawHandle.DrawImage(frame, 0, 0);
 
-                if (screen_x + SideScroller.CANVAS_WIDTH < SideScroller.LEVEL_WIDTH * SideScroller.TILE_SIDE_LENGTH && koala_x - screen_x > SideScroller.CANVAS_WIDTH/2) screen_x = screen_x + 5;
+                if (screen_x + SideScroller.CANVAS_WIDTH < SideScroller.LEVEL_WIDTH * SideScroller.TILE_SIDE_LENGTH + 17 && koala_x - screen_x > SideScroller.CANVAS_WIDTH/2) screen_x = screen_x + 5;
                 if (screen_x > 0 && koala_x - screen_x < SideScroller.CANVAS_WIDTH / 2) screen_x = screen_x - 5;
 
 
                 frameRendered++;
                 if (Environment.TickCount >= startTime + 1000) {
+                    fps = frameRendered;
                     //koala_x++;
                     //if (koala_x > SideScroller.LEVEL_WIDTH) koala_x = 0;
                     Console.Write("GEngine: " + frameRendered + " fps");

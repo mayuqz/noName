@@ -30,12 +30,21 @@ namespace Teste_SideScroller
             gEngine.stop();
         }
 
+        public void pauseSideScroller(){
+            gEngine.pause();
+        }
+
+        public void resumeSideScroller(){
+            gEngine.resume();
+        }
+
     }
 
     public enum TextureID {
         air,
         dirt,
         dirt2,
-        lava
+        lava,
+        coin
     }
 }
